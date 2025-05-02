@@ -28,17 +28,16 @@ public class JpaCoupon {
 
   @ManyToOne
   @JoinColumn(name = "event_id")
+  @Setter
+  @Getter
   private JpaEvent event;
 
   public JpaCoupon(Coupon coupon) {
     this.code = coupon.getCode();
     this.discount = coupon.getDiscount();
     this.valid = coupon.getValid();
-    this.event.setId(coupon.getEvent().getId());
-    this.event.setDate(coupon.getEvent().getDate());
-    this.event.setDescription(coupon.getEvent().getDescription());
-    this.event.setEventUrl(coupon.getEvent().getEventUrl());
-    this.event.setTitle(coupon.getEvent().getTitle());
-    this.event.setRemote(coupon.getEvent().getRemote());
+    if (coupon.getEvent() != null) {
+      this.event = new JpaEvent(coupon.getEvent());
+    }
   }
 }

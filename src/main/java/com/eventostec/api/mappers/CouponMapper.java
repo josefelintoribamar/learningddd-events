@@ -33,7 +33,7 @@ public interface CouponMapper {
     @Mappings({
         @Mapping(source = "coupon.code", target = "code"),
         @Mapping(source = "coupon.discount", target = "discount"),
-        @Mapping(source = "coupon.valid", target = "valid", qualifiedByName = "dateToEpoch")
+        @Mapping(source = "coupon.valid", target = "valid")
     })
     CouponResponseDTO toResponseDto(Coupon coupon);
 
