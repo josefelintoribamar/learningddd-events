@@ -62,7 +62,7 @@ public interface EventMapper {
                 event.getDescription(),
                 event.getDate(),
                 address.isPresent() ? address.get().getCity() : "",
-                address.isPresent() ? address.get().getUf() : "",
+                address.isPresent() ? address.get().getState() : "",
                 event.getEventUrl(),
                 couponDTOs);
     }

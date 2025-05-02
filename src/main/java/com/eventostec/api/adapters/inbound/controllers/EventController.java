@@ -1,4 +1,4 @@
-package com.eventostec.api.adapters.inbound.controller;
+package com.eventostec.api.adapters.inbound.controllers;
 
 import com.eventostec.api.domain.coupon.Coupon;
 import com.eventostec.api.domain.coupon.CouponRequestDTO;

@@ -2,6 +2,7 @@ package com.eventostec.api.application.service;
 
 import com.eventostec.api.application.usecases.EventUseCases;
 import com.eventostec.api.domain.address.Address;
+import com.eventostec.api.domain.address.AddressRequestDTO;
 import com.eventostec.api.domain.coupon.Coupon;
 import com.eventostec.api.domain.event.*;
 import com.eventostec.api.mappers.EventMapper;
@@ -22,10 +23,10 @@ public class EventServiceImpl implements EventUseCases {
     private String adminKey;
 
     private final EventRepository eventRepository;
-    private final AddressService addressService;
+    private final AddressServiceImpl addressService;
     private final CouponServiceImpl couponService;
 
-    public EventServiceImpl(EventRepository eventRepository, AddressService addressService, CouponServiceImpl couponService) {
+    public EventServiceImpl(EventRepository eventRepository, AddressServiceImpl addressService, CouponServiceImpl couponService) {
         this.eventRepository = eventRepository;
         this.addressService = addressService;
         this.couponService = couponService;
@@ -39,7 +40,8 @@ public class EventServiceImpl implements EventUseCases {
         this.eventRepository.save(event);
 
         if (Boolean.FALSE.equals(eventRequestDTO.remote())) {
-            this.addressService.createAddress(eventRequestDTO, event);
+            AddressRequestDTO addressRequestDTO = new AddressRequestDTO(eventRequestDTO.city(), eventRequestDTO.state());
+            this.addressService.addAddressToEvent(event.getId(), addressRequestDTO);
         }
 
         return event;
@@ -64,7 +66,7 @@ public class EventServiceImpl implements EventUseCases {
         Event event = this.eventRepository.findById(eventId)
                 .orElseThrow(() -> new IllegalArgumentException("Event not found"));
 
-        Optional<Address> address = addressService.findByEventId(eventId);
+        Optional<Address> address = addressService.findByEvent(event);
 
         List<Coupon> coupons = couponService.consultCoupons(event, new Date());
 

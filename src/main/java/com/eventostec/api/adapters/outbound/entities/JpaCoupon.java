@@ -28,16 +28,16 @@ public class JpaCoupon {
 
   @ManyToOne
   @JoinColumn(name = "event_id")
-  @Setter
-  @Getter
-  private JpaEvent event;
+  //@Setter
+  //@Getter
+  private JpaEvent jpaEvent;
 
   public JpaCoupon(Coupon coupon) {
-    this.code = coupon.getCode();
-    this.discount = coupon.getDiscount();
-    this.valid = coupon.getValid();
-    if (coupon.getEvent() != null) {
-      this.event = new JpaEvent(coupon.getEvent());
-    }
+      this.code = coupon.getCode();
+      this.discount = coupon.getDiscount();
+      this.valid = coupon.getValid();
+      if (coupon.getEvent() != null) {
+          this.jpaEvent = new JpaEvent(coupon.getEvent());
+      }
   }
 }
