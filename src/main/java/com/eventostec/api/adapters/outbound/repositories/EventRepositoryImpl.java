@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import com.eventostec.api.adapters.outbound.entities.JpaEvent;
@@ -19,67 +18,61 @@ import com.eventostec.api.mappers.EventMapper;
 
 @Repository
 public class EventRepositoryImpl implements EventRepository {
+    private final JpaEventRepository jpaEventRepository;
+    private final EventMapper eventMapper;
 
-  private final JpaEventRepository jpaEventRepository;
-  private final EventMapper eventMapper;
+    public EventRepositoryImpl(JpaEventRepository jpaEventRepository, EventMapper eventMapper) {
+        this.jpaEventRepository = jpaEventRepository;
+        this.eventMapper = eventMapper;
+    }
 
-  public EventRepositoryImpl(JpaEventRepository jpaEventRepository, EventMapper eventMapper) {
-    this.jpaEventRepository = jpaEventRepository;
-    this.eventMapper = eventMapper;
-  }
-
-  @Override
-  public Event save(Event event) {
-    final JpaEvent jpaEvent = new JpaEvent(event);
-    this.jpaEventRepository.save(jpaEvent);
-    return new Event(jpaEvent.getId(),
-        jpaEvent.getTitle(),
-        jpaEvent.getDescription(),
-        jpaEvent.getImgUrl(),
-        jpaEvent.getEventUrl(),
-        jpaEvent.getRemote(),
-        jpaEvent.getDate());
-  }
-
-  @Override
-  public Optional<Event> findById(UUID id) {
-    final Optional<JpaEvent> optional = this.jpaEventRepository.findById(id);
-    return optional.map(eventMapper::toDomain);
-  }
-
-  @Override
-  public List<Event> findAll() {
-    return this.jpaEventRepository.findAll().stream()
-        .map(jpaEvent -> new Event(jpaEvent.getId(),
+    @Override
+    public Event save(Event event) {
+        final JpaEvent jpaEvent = new JpaEvent(event);
+        this.jpaEventRepository.save(jpaEvent);
+        return new Event(jpaEvent.getId(),
             jpaEvent.getTitle(),
             jpaEvent.getDescription(),
-            jpaEvent.getImgUrl(),
             jpaEvent.getEventUrl(),
             jpaEvent.getRemote(),
-            jpaEvent.getDate()))
-        .collect(Collectors.toList());
-  }
+            jpaEvent.getDate());
+    }
 
-  @Override
-  public void deleteById(UUID id) {
-    this.jpaEventRepository.deleteById(id);
-  }
+    @Override
+    public Optional<Event> findById(UUID id) {
+        final Optional<JpaEvent> optional = this.jpaEventRepository.findById(id);
+        return optional.map(eventMapper::toDomain);
+    }
 
-  @Override
-  public Page<EventAddressProjection> findUpcommingEvents(Date currentDate, int page, int size) {
-    Pageable pageable = PageRequest.of(page, size);
-    return this.jpaEventRepository.findUpcomingEvents(currentDate, pageable);
-  }
+    @Override
+    public List<Event> findAll() {
+        return this.jpaEventRepository.findAll().stream()
+            .map(jpaEvent -> new Event(jpaEvent.getId(),
+                jpaEvent.getTitle(),
+                jpaEvent.getDescription(),
+                jpaEvent.getEventUrl(),
+                jpaEvent.getRemote(),
+                jpaEvent.getDate()))
+            .collect(Collectors.toList());
+    }
 
-  @Override
-  public Page<EventAddressProjection> findFilteredEvents(String city, String uf, Date startDate, Date endDate, int page,
-      int size) {
-    Pageable pageable = PageRequest.of(page, size);
-    return this.jpaEventRepository.findFilteredEvents(city, uf, startDate, endDate, pageable);
-  }
+    @Override
+    public void deleteById(UUID id) {
+        this.jpaEventRepository.deleteById(id);
+    }
 
-  @Override
-  public List<EventAddressProjection> findEventsByTitle(String title) {
-    return this.jpaEventRepository.findEventsByTitle(title);
-  }
+    @Override
+    public Page<EventAddressProjection> findUpcommingEvents(Date currentDate, int page, int size) {
+        return this.jpaEventRepository.findUpcomingEvents(currentDate, PageRequest.of(page, size));
+    }
+
+    @Override
+    public Page<EventAddressProjection> findFilteredEvents(String city, String uf, Date startDate, Date endDate, int page, int size) {
+        return this.jpaEventRepository.findFilteredEvents(city, uf, startDate, endDate, PageRequest.of(page, size));
+    }
+
+    @Override
+    public List<EventAddressProjection> findEventsByTitle(String title) {
+        return this.jpaEventRepository.findEventsByTitle(title);
+    }
 }

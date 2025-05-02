@@ -14,8 +14,8 @@ import java.util.UUID;
 
 import com.eventostec.api.domain.event.Event;
 
-@Table(name = "event")
 @Entity
+@Table(name = "event")
 @Setter
 @Getter
 @NoArgsConstructor
@@ -27,7 +27,6 @@ public class JpaEvent {
 
   private String title;
   private String description;
-  private String imgUrl;
   private String eventUrl;
   private Boolean remote;
   private Date date;
@@ -35,10 +34,8 @@ public class JpaEvent {
   public JpaEvent(Event event) {
     this.title = event.getTitle();
     this.description = event.getDescription();
-    this.imgUrl = event.getImgUrl();
     this.eventUrl = event.getEventUrl();
     this.remote = event.getRemote();
     this.date = event.getDate();
   }
-
 }

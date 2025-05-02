@@ -8,7 +8,6 @@ public class Event {
 
     private String title;
     private String description;
-    private String imgUrl;
     private String eventUrl;
     private Boolean remote;
     private Date date;
@@ -16,11 +15,10 @@ public class Event {
     public Event() {
     }
 
-    public Event(UUID id, String title, String description, String imgUrl, String eventUrl, Boolean remote, Date date) {
+    public Event(UUID id, String title, String description, String eventUrl, Boolean remote, Date date) {
         this.id = id;
         this.title = title;
         this.description = description;
-        this.imgUrl = imgUrl;
         this.eventUrl = eventUrl;
         this.remote = remote;
         this.date = date;
@@ -48,14 +46,6 @@ public class Event {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getImgUrl() {
-        return this.imgUrl;
-    }
-
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
     }
 
     public String getEventUrl() {

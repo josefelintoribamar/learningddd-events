@@ -1,30 +1,16 @@
 package com.eventostec.api.adapters.outbound.storage;
 
-import java.nio.ByteBuffer;
-import java.util.UUID;
-
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import software.amazon.awssdk.core.sync.RequestBody;
-import software.amazon.awssdk.services.s3.S3Client;
-import software.amazon.awssdk.services.s3.model.GetUrlRequest;
-import software.amazon.awssdk.services.s3.model.PutObjectRequest;
-
-@Service
-@RequiredArgsConstructor
-@Slf4j
+//@Service
+//@RequiredArgsConstructor
+//@Slf4j
 public class ImageUploadAdapter implements ImageUploadPort {
 
-  @Value("${aws.bucket.name}")
-  private String bucketName;
+  //@Value("${aws.bucket.name}")
+  //private String bucketName;
 
-  private final S3Client s3Client;
+  //private final S3Client s3Client;
 
-  public String uploadImage(MultipartFile multipartFile) {
+/*  public String uploadImage(MultipartFile multipartFile) {
     String filename = UUID.randomUUID() + "-" + multipartFile.getOriginalFilename();
 
     try {
@@ -42,6 +28,5 @@ public class ImageUploadAdapter implements ImageUploadPort {
       log.error("erro ao subir arquivo: {}", e.getMessage());
       return "";
     }
-  }
-
+  }*/
 }

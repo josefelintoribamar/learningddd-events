@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.UUID;
 
 import com.eventostec.api.domain.event.Event;
-import com.eventostec.api.domain.event.EventDetailsDTO;
+import com.eventostec.api.domain.event.EventDTO;
 import com.eventostec.api.domain.event.EventRequestDTO;
 import com.eventostec.api.domain.event.EventResponseDTO;
 
@@ -14,7 +14,7 @@ public interface EventUseCases {
 
   List<EventResponseDTO> getUpcommingEvents(int page, int size);
 
-  EventDetailsDTO getEventDetails(UUID id);
+  EventDTO getEventDetails(UUID id);
 
   void deleteEvent(UUID id, String adminKey);
 

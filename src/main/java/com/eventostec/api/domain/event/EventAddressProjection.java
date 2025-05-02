@@ -8,7 +8,6 @@ public interface EventAddressProjection {
     String getTitle();
     String getDescription();
     Date getDate();
-    String getImgUrl();
     String getEventUrl();
     Boolean getRemote();
     String getCity();
