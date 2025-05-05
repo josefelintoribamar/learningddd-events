@@ -12,7 +12,6 @@ import com.eventostec.api.mappers.EventMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class AddressServiceImpl {
@@ -29,7 +28,7 @@ public class AddressServiceImpl {
         this.addressMapper = addressMapper;
     }
 
-    public Address addAddressToEvent(UUID eventId, AddressRequestDTO addressData) {
+    public Address addAddressToEvent(Long eventId, AddressRequestDTO addressData) {
         JpaEvent jpaEvent = eventRepository.findById(eventId)
             .orElseThrow(() -> new IllegalArgumentException("Event not found"));
 

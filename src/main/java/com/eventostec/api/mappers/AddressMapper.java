@@ -18,6 +18,7 @@ public interface AddressMapper {
         @Mapping(source = "addressRequestDTO.state", target = "state"),
         @Mapping(target = "event", ignore = true)
     })
+    @SuppressWarnings("UnmappedTargetProperties")
     Address toDomain(AddressRequestDTO addressRequestDTO);
 
     @Mappings({

@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class CouponServiceImpl {
@@ -26,7 +25,7 @@ public class CouponServiceImpl {
         this.eventMapper = eventMapper;
     }
 
-    public Coupon addCouponToEvent(UUID eventId, CouponRequestDTO couponData) {
+    public Coupon addCouponToEvent(Long eventId, CouponRequestDTO couponData) {
         JpaEvent jpaEvent = eventRepository.findById(eventId)
             .orElseThrow(() -> new IllegalArgumentException("Event not found"));
 

@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
@@ -28,13 +27,13 @@ public class EventController {
     private final CouponServiceImpl couponServiceImpl;
 
     @PostMapping
-    public ResponseEntity<Event> create(@Valid @ModelAttribute EventRequestDTO eventRequestDTO) {
+    public ResponseEntity<Event> create(@Valid @RequestBody EventRequestDTO eventRequestDTO) {
         Event newEvent = this.eventService.create(eventRequestDTO);
         return ResponseEntity.ok(newEvent);
     }
 
     @GetMapping("/{eventId}")
-    public ResponseEntity<EventDTO> getEventDetails(@PathVariable UUID eventId) {
+    public ResponseEntity<EventDTO> getEventDetails(@PathVariable Long eventId) {
         EventDTO eventDetails = eventService.getEventDetails(eventId);
         return ResponseEntity.ok(eventDetails);
     }
@@ -64,13 +63,13 @@ public class EventController {
     }
 
     @DeleteMapping("/{eventId}")
-    public ResponseEntity<Void> deleteEvent(@PathVariable UUID eventId, @RequestBody String adminKey) {
+    public ResponseEntity<Void> deleteEvent(@PathVariable Long eventId, @RequestBody String adminKey) {
         eventService.deleteEvent(eventId, adminKey);
         return ResponseEntity.noContent().build();
     }
 
     @PostMapping("/{eventId}/coupon")
-    public ResponseEntity<Coupon> addCouponsToEvent(@PathVariable UUID eventId, @RequestBody CouponRequestDTO data) {
+    public ResponseEntity<Coupon> addCouponsToEvent(@PathVariable Long eventId, @RequestBody CouponRequestDTO data) {
         Coupon coupons = this.couponServiceImpl.addCouponToEvent(eventId, data);
         return ResponseEntity.ok(coupons);
     }

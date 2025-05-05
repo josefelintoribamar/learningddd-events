@@ -2,10 +2,9 @@ package com.eventostec.api.domain.coupon;
 
 import com.eventostec.api.domain.event.Event;
 import java.util.Date;
-import java.util.UUID;
 
 public class Coupon {
-    private UUID id;
+    private Long id;
 
     private String code;
     private Integer discount;
@@ -16,14 +15,14 @@ public class Coupon {
     public Coupon() {
     }
 
-    public Coupon(UUID id, String code, Integer discount, Date valid) {
+    public Coupon(Long id, String code, Integer discount, Date valid) {
         this.id = id;
         this.code = code;
         this.discount = discount;
         this.valid = valid;
     }
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
@@ -43,7 +42,7 @@ public class Coupon {
         return event;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

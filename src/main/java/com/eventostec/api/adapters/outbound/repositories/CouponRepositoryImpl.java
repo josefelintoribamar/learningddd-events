@@ -9,7 +9,6 @@ import com.eventostec.api.adapters.outbound.entities.JpaCoupon;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Repository;
@@ -35,7 +34,7 @@ public class CouponRepositoryImpl implements CouponRepository {
     }
 
     @Override
-    public Optional<Coupon> findById(UUID id) {
+    public Optional<Coupon> findById(Long id) {
         final Optional<JpaCoupon> optional = this.jpaCouponRepository.findById(id);
         return optional.map(couponMapper::toDomain);
     }
@@ -71,7 +70,7 @@ public class CouponRepositoryImpl implements CouponRepository {
     }
 
     @Override
-    public void deleteById(UUID id) {
+    public void deleteById(Long id) {
         this.jpaCouponRepository.deleteById(id);
     }
 }

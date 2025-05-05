@@ -1,7 +1,6 @@
 package com.eventostec.api.domain.address;
 
 import java.util.Optional;
-import java.util.UUID;
 
 import com.eventostec.api.domain.event.Event;
 
@@ -10,5 +9,5 @@ public interface AddressRepository {
 
     Optional<Address> findByEvent(Event event);
 
-    void deleteById(UUID id);
+    void deleteById(Long id);
 }

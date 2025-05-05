@@ -1,27 +1,26 @@
 package com.eventostec.api.domain.address;
 
 import com.eventostec.api.domain.event.Event;
-import java.util.UUID;
 
 public class Address {
-    private UUID id;
+    private Long id;
 
     private String city;
     private String state;
 
     private Event event;
 
-    public Address(UUID id, String city, String state) {
+    public Address(Long id, String city, String state) {
         this.id = id;
         this.city = city;
         this.state = state;
     }
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -7,7 +7,6 @@ import com.eventostec.api.mappers.AddressMapper;
 import com.eventostec.api.adapters.outbound.entities.JpaAddress;
 
 import java.util.Optional;
-import java.util.UUID;
 
 import org.springframework.stereotype.Repository;
 
@@ -37,7 +36,7 @@ public class AddressRepositoryImpl implements AddressRepository {
     }
 
     @Override
-    public void deleteById(UUID id) {
+    public void deleteById(Long id) {
         this.jpaAddressRepository.deleteById(id);
     }
 }

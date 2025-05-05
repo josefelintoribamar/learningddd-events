@@ -7,6 +7,9 @@ import com.eventostec.api.domain.coupon.Coupon;
 import com.eventostec.api.domain.event.*;
 import com.eventostec.api.mappers.EventMapper;
 
+import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
@@ -14,8 +17,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
+@Slf4j
 @Service
 public class EventServiceImpl implements EventUseCases {
 
@@ -35,10 +38,10 @@ public class EventServiceImpl implements EventUseCases {
     @Autowired
     private EventMapper mapper;
 
+    @Transactional
     public Event create(EventRequestDTO eventRequestDTO) {
         Event event = mapper.toDomain(eventRequestDTO);
-        this.eventRepository.save(event);
-
+        event = this.eventRepository.save(event); // Atribua o resultado do save() de volta à variável
         if (Boolean.FALSE.equals(eventRequestDTO.remote())) {
             AddressRequestDTO addressRequestDTO = new AddressRequestDTO(eventRequestDTO.city(), eventRequestDTO.state());
             this.addressService.addAddressToEvent(event.getId(), addressRequestDTO);
@@ -62,7 +65,7 @@ public class EventServiceImpl implements EventUseCases {
                 .stream().toList();
     }
 
-    public EventDTO getEventDetails(UUID eventId) {
+    public EventDTO getEventDetails(Long eventId) {
         Event event = this.eventRepository.findById(eventId)
                 .orElseThrow(() -> new IllegalArgumentException("Event not found"));
 
@@ -73,7 +76,7 @@ public class EventServiceImpl implements EventUseCases {
         return this.mapper.toDTO(event, address, coupons);
     }
 
-    public void deleteEvent(UUID eventId, String adminKey) {
+    public void deleteEvent(Long eventId, String adminKey) {
         if (adminKey == null || !adminKey.equals(this.adminKey)) {
             throw new IllegalArgumentException("Invalid admin key");
         }

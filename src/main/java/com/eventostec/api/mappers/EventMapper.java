@@ -29,6 +29,7 @@ public interface EventMapper {
         @Mapping(target = "address.city", ignore = true), // Ignorar city
         @Mapping(target = "address.state", ignore = true) // Ignorar state
     })
+    @SuppressWarnings("UnmappedTargetProperties")
     Event toDomain(EventRequestDTO eventRequestDTO);
 
     @Mappings({
@@ -57,14 +58,17 @@ public interface EventMapper {
                         coupon.getDiscount(),
                         coupon.getValid()))
                 .collect(Collectors.toList());
-
+    
+        String city = address.map(Address::getCity).orElse("");
+        String state = address.map(Address::getState).orElse("");
+    
         return new EventDTO(
                 event.getId(),
                 event.getTitle(),
                 event.getDescription(),
                 event.getDate(),
-                address.isPresent() ? address.get().getCity() : "",
-                address.isPresent() ? address.get().getState() : "",
+                city,
+                state,
                 event.getEventUrl(),
                 couponDTOs);
     }

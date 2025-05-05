@@ -10,9 +10,8 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
-public interface JpaEventRepository extends JpaRepository<JpaEvent, UUID> {
+public interface JpaEventRepository extends JpaRepository<JpaEvent, Long> {
 
     @Query("SELECT e.id AS id, e.title AS title, e.description AS description, e.date AS date, e.eventUrl AS eventUrl, e.remote AS remote, a.city AS city, a.state AS state "
         + "FROM JpaEvent e LEFT JOIN JpaAddress a ON e.id = a.jpaEvent.id " 

@@ -7,8 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.UUID;
-
 @Table(name = "address")
 @Entity
 @Getter
@@ -16,13 +14,14 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class JpaAddress {
+
     @Id
-    @GeneratedValue
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "id", updatable = false, nullable = false)
+    private Long id;
 
     private String city;
     private String state;
-
 
     // Relacionamento com JpaEvent
     @ManyToOne

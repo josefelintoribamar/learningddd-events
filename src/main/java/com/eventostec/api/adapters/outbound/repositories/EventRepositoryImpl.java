@@ -3,7 +3,6 @@ package com.eventostec.api.adapters.outbound.repositories;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.springframework.data.domain.Page;
@@ -39,7 +38,7 @@ public class EventRepositoryImpl implements EventRepository {
     }
 
     @Override
-    public Optional<Event> findById(UUID id) {
+    public Optional<Event> findById(Long id) {
         final Optional<JpaEvent> optional = this.jpaEventRepository.findById(id);
         return optional.map(eventMapper::toDomain);
     }
@@ -57,7 +56,7 @@ public class EventRepositoryImpl implements EventRepository {
     }
 
     @Override
-    public void deleteById(UUID id) {
+    public void deleteById(Long id) {
         this.jpaEventRepository.deleteById(id);
     }
 

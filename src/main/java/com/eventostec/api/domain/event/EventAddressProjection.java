@@ -1,10 +1,9 @@
 package com.eventostec.api.domain.event;
 
 import java.util.Date;
-import java.util.UUID;
 
 public interface EventAddressProjection {
-    UUID getId();
+    Long getId();
     String getTitle();
     String getDescription();
     Date getDate();

@@ -1,10 +1,9 @@
 package com.eventostec.api.domain.event;
 
 import java.util.Date;
-import java.util.UUID;
 
 public record EventResponseDTO(
-    UUID id, 
+    Long id, 
     String title, 
     String description, 
     Date date, 

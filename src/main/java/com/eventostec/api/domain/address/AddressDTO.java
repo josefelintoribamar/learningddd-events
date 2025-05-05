@@ -1,9 +1,7 @@
 package com.eventostec.api.domain.address;
 
-import java.util.UUID;
-
 public record AddressDTO (
-    UUID id,
+    Long id,
     String city,
     String state) {
 }

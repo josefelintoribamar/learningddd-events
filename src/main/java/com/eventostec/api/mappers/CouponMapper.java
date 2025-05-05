@@ -22,6 +22,7 @@ public interface CouponMapper {
         @Mapping(source = "couponRequestDTO.valid", target = "valid", qualifiedByName = "epochToDate"),
         @Mapping(target = "event", ignore = true)
     })
+    @SuppressWarnings("UnmappedTargetProperties")
     Coupon toDomain(CouponRequestDTO couponRequestDTO);
 
     @Mappings({

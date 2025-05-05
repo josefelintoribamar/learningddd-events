@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
-import java.util.UUID;
 
 @Entity
 @Table(name = "coupon")
@@ -18,9 +17,11 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class JpaCoupon {
+
   @Id
-  @GeneratedValue
-  private UUID id;
+  @GeneratedValue(strategy = GenerationType.SEQUENCE)
+  @Column(name = "id", updatable = false, nullable = false)
+  private Long id;
 
   private String code;
   private Integer discount;

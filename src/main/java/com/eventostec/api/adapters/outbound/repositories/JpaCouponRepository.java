@@ -5,10 +5,9 @@ import com.eventostec.api.adapters.outbound.entities.JpaCoupon;
 
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
-public interface JpaCouponRepository extends JpaRepository<JpaCoupon, UUID> {
-    List<JpaCoupon> findByJpaEvent_Id(UUID eventId);
-    List<JpaCoupon> findByJpaEvent_IdAndValidAfter(UUID eventId, Date since);
-    List<JpaCoupon> findByJpaEvent_IdAndValid(UUID eventId, Date currentDate);
+public interface JpaCouponRepository extends JpaRepository<JpaCoupon, Long> {
+    List<JpaCoupon> findByJpaEvent_Id(Long eventId);
+    List<JpaCoupon> findByJpaEvent_IdAndValidAfter(Long eventId, Date since);
+    List<JpaCoupon> findByJpaEvent_IdAndValid(Long eventId, Date currentDate);
 }

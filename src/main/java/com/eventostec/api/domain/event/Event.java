@@ -1,10 +1,9 @@
 package com.eventostec.api.domain.event;
 
 import java.util.Date;
-import java.util.UUID;
 
 public class Event {
-    private UUID id;
+    private Long id;
 
     private String title;
     private String description;
@@ -15,7 +14,7 @@ public class Event {
     public Event() {
     }
 
-    public Event(UUID id, String title, String description, String eventUrl, Boolean remote, Date date) {
+    public Event(Long id, String title, String description, String eventUrl, Boolean remote, Date date) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -24,11 +23,11 @@ public class Event {
         this.date = date;
     }
 
-    public UUID getId() {
+    public Long getId() {
         return this.id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -75,4 +74,17 @@ public class Event {
     public void setDate(Date date) {
         this.date = date;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+            " id='" + getId() + "'" +
+            ", title='" + getTitle() + "'" +
+            ", description='" + getDescription() + "'" +
+            ", eventUrl='" + getEventUrl() + "'" +
+            ", remote='" + isRemote() + "'" +
+            ", date='" + getDate() + "'" +
+            "}";
+    }
+
 }

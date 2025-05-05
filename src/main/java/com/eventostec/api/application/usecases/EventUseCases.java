@@ -2,7 +2,6 @@ package com.eventostec.api.application.usecases;
 
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 import com.eventostec.api.domain.event.Event;
 import com.eventostec.api.domain.event.EventDTO;
@@ -14,9 +13,9 @@ public interface EventUseCases {
 
   List<EventResponseDTO> getUpcommingEvents(int page, int size);
 
-  EventDTO getEventDetails(UUID id);
+  EventDTO getEventDetails(Long id);
 
-  void deleteEvent(UUID id, String adminKey);
+  void deleteEvent(Long id, String adminKey);
 
   List<EventResponseDTO> searchEvents(String title);
 

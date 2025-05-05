@@ -1,7 +1,9 @@
 package com.eventostec.api.adapters.outbound.entities;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -10,7 +12,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
-import java.util.UUID;
 
 import com.eventostec.api.domain.event.Event;
 
@@ -21,21 +22,24 @@ import com.eventostec.api.domain.event.Event;
 @NoArgsConstructor
 @AllArgsConstructor
 public class JpaEvent {
-  @Id
-  @GeneratedValue
-  private UUID id;
 
-  private String title;
-  private String description;
-  private String eventUrl;
-  private Boolean remote;
-  private Date date;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", updatable = false, nullable = false)
+    private Long id;
 
-  public JpaEvent(Event event) {
-    this.title = event.getTitle();
-    this.description = event.getDescription();
-    this.eventUrl = event.getEventUrl();
-    this.remote = event.getRemote();
-    this.date = event.getDate();
-  }
+    private String title;
+    private String description;
+    private String eventUrl;
+    private Boolean remote;
+    private Date date;
+
+    public JpaEvent(Event event) {
+      this.id = event.getId();
+      this.title = event.getTitle();
+      this.description = event.getDescription();
+      this.eventUrl = event.getEventUrl();
+      this.remote = event.getRemote();
+      this.date = event.getDate();
+    }
 }
