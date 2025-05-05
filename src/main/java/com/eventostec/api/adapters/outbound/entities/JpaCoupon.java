@@ -26,11 +26,9 @@ public class JpaCoupon {
   private Integer discount;
   private Date valid;
 
-  @ManyToOne
-  @JoinColumn(name = "event_id")
-  //@Setter
-  //@Getter
-  private JpaEvent jpaEvent;
+    @ManyToOne
+    @JoinColumn(name = "event_id", nullable = false) // Cria a coluna "event_id" na tabela "address"
+    private JpaEvent jpaEvent;
 
   public JpaCoupon(Coupon coupon) {
       this.code = coupon.getCode();

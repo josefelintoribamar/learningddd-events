@@ -7,5 +7,5 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface JpaAddressRepository extends JpaRepository<JpaAddress, UUID> {
-    public Optional<JpaAddress> findByEventId(UUID eventId);
+    Optional<JpaAddress> findByJpaEvent_Id(UUID eventId);
 }

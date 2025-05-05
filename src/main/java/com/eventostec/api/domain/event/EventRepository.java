@@ -19,7 +19,7 @@ public interface EventRepository {
 
     Page<EventAddressProjection> findUpcommingEvents(@Param("currentDate") Date currentDate, int page, int size);
 
-    Page<EventAddressProjection> findFilteredEvents(String city, String uf, Date startDate, Date endDate, int page, int size);
+    Page<EventAddressProjection> findFilteredEvents(String city, String state, Date startDate, Date endDate, int page, int size);
 
     List<EventAddressProjection> findEventsByTitle(@Param("title") String title);
 }

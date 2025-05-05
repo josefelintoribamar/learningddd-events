@@ -67,8 +67,8 @@ public class EventRepositoryImpl implements EventRepository {
     }
 
     @Override
-    public Page<EventAddressProjection> findFilteredEvents(String city, String uf, Date startDate, Date endDate, int page, int size) {
-        return this.jpaEventRepository.findFilteredEvents(city, uf, startDate, endDate, PageRequest.of(page, size));
+    public Page<EventAddressProjection> findFilteredEvents(String city, String state, Date startDate, Date endDate, int page, int size) {
+        return this.jpaEventRepository.findFilteredEvents(city, state, startDate, endDate, PageRequest.of(page, size));
     }
 
     @Override

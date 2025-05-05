@@ -11,5 +11,5 @@ public interface EventAddressProjection {
     String getEventUrl();
     Boolean getRemote();
     String getCity();
-    String getUf();
+    String getState();
 }

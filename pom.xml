@@ -42,7 +42,7 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <scope>runtime</scope>
+            <version>42.7.4</version>
         </dependency>
 
         <!-- Lombok -->
@@ -78,7 +78,7 @@
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
-            <version>9.8.1</version>
+            <version>9.8.3</version>
         </dependency>
 
         <!-- Test Dependencies -->
@@ -151,6 +151,38 @@
                 </executions>
                 <configuration>
                     <outputDirectory>${project.build.directory}/site/jacoco</outputDirectory>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>9.8.3</version>
+                
+                <!-- Dependência do driver PostgreSQL (já existe no seu pom, mas reforçando) -->
+                <dependencies>
+                    <dependency>
+                        <groupId>org.postgresql</groupId>
+                        <artifactId>postgresql</artifactId>
+                        <version>42.7.4</version>
+                    </dependency>
+                </dependencies>
+                
+                <!-- CONFIGURAÇÕES DO FLYWAY -->
+                <configuration>
+                    <!-- Configurações básicas de conexão -->
+                    <url>jdbc:postgresql://localhost:5432/experimenter_db</url>
+                    <user>experimenter_db_admin</user>
+                    <password>12345</password>
+                    <driver>org.postgresql.Driver</driver>
+                    
+                    <!-- Configurações adicionais recomendadas -->
+                    <connectRetries>2</connectRetries> <!-- Número de tentativas de conexão -->
+                    <baselineOnMigrate>true</baselineOnMigrate> <!-- Se deve criar baseline automaticamente -->
+
+                    <!-- Adicione estas linhas para forçar o reconhecimento do PostgreSQL -->
+                    <databaseType>POSTGRES</databaseType>
+                    <skipDefaultResolvers>false</skipDefaultResolvers>
+                    <skipDefaultCallbacks>false</skipDefaultCallbacks>
                 </configuration>
             </plugin>
         </plugins>

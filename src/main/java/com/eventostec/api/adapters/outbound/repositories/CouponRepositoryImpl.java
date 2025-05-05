@@ -42,7 +42,7 @@ public class CouponRepositoryImpl implements CouponRepository {
 
     @Override
     public List<Coupon> findByEvent(Event event) {
-        final List<JpaCoupon> jpaCoupons = this.jpaCouponRepository.findByEventId(event.getId());
+        final List<JpaCoupon> jpaCoupons = this.jpaCouponRepository.findByJpaEvent_Id(event.getId());
         return jpaCoupons.stream()
             .map(couponMapper::toDomain)
             .collect(Collectors.toList());
@@ -50,7 +50,7 @@ public class CouponRepositoryImpl implements CouponRepository {
 
     @Override
     public List<Coupon> findByEventAndValidAfter(Event event, Date since) {
-        final List<JpaCoupon> jpaCoupons = this.jpaCouponRepository.findByEventIdAndValidAfter(event.getId(), since);
+        final List<JpaCoupon> jpaCoupons = this.jpaCouponRepository.findByJpaEvent_IdAndValidAfter(event.getId(), since);
         if (jpaCoupons.isEmpty()) {
             return List.of();
         }
@@ -61,7 +61,7 @@ public class CouponRepositoryImpl implements CouponRepository {
 
     @Override
     public List<Coupon> findByEventAndValid(Event event, Date date) {
-        final List<JpaCoupon> jpaCoupons = this.jpaCouponRepository.findByEventIdAndValid(event.getId(), date);
+        final List<JpaCoupon> jpaCoupons = this.jpaCouponRepository.findByJpaEvent_IdAndValid(event.getId(), date);
         if (jpaCoupons.isEmpty()) {
             return List.of();
         }

@@ -56,7 +56,7 @@ public class EventServiceImpl implements EventUseCases {
                 event.getDescription(),
                 event.getDate(),
                 event.getCity() != null ? event.getCity() : "",
-                event.getUf() != null ? event.getUf() : "",
+                event.getState() != null ? event.getState() : "",
                 event.getRemote(),
                 event.getEventUrl()))
                 .stream().toList();
@@ -91,33 +91,33 @@ public class EventServiceImpl implements EventUseCases {
                 event.getDescription(),
                 event.getDate(),
                 event.getCity() != null ? event.getCity() : "",
-                event.getUf() != null ? event.getUf() : "",
+                event.getState() != null ? event.getState() : "",
                 event.getRemote(),
                 event.getEventUrl()))
                 .toList();
     }
 
-    public List<EventResponseDTO> getFilteredEvents(int page, int size, String city, String uf, Date startDate, Date endDate) {
+    public List<EventResponseDTO> getFilteredEvents(int page, int size, String city, String state, Date startDate, Date endDate) {
         city = (city != null) ? city : "";
-        uf = (uf != null) ? uf : "";
+        state = (state != null) ? state : "";
         startDate = (startDate != null) ? startDate : new Date(0);
         endDate = (endDate != null) ? endDate : new Date();
 
-        Page<EventAddressProjection> eventsPage = this.eventRepository.findFilteredEvents(city, uf, startDate, endDate, page, size);
+        Page<EventAddressProjection> eventsPage = this.eventRepository.findFilteredEvents(city, state, startDate, endDate, page, size);
         return eventsPage.map(event -> new EventResponseDTO(
                 event.getId(),
                 event.getTitle(),
                 event.getDescription(),
                 event.getDate(),
                 event.getCity() != null ? event.getCity() : "",
-                event.getUf() != null ? event.getUf() : "",
+                event.getState() != null ? event.getState() : "",
                 event.getRemote(),
                 event.getEventUrl()))
                 .stream().toList();
     }
 
     @Override
-    public List<EventResponseDTO> filterEvents(int page, int size, String city, String uf, Date startDate,
+    public List<EventResponseDTO> filterEvents(int page, int size, String city, String state, Date startDate,
             Date endDate) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'filterEvents'");

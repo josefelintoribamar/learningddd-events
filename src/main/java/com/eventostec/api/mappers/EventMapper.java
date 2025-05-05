@@ -20,31 +20,33 @@ import java.util.stream.Collectors;
 public interface EventMapper {
 
     @Mappings({
-            @Mapping(target = "id", ignore = true),
-            @Mapping(source = "eventRequestDTO.title", target = "title"),
-            @Mapping(source = "eventRequestDTO.description", target = "description"),
-            @Mapping(source = "eventRequestDTO.eventUrl", target = "eventUrl"),
-            @Mapping(source = "eventRequestDTO.date", target = "date", qualifiedByName = "epochToDate"),
-            @Mapping(source = "eventRequestDTO.remote", target = "remote"),
+        @Mapping(target = "id", ignore = true),
+        @Mapping(source = "eventRequestDTO.title", target = "title"),
+        @Mapping(source = "eventRequestDTO.description", target = "description"),
+        @Mapping(source = "eventRequestDTO.eventUrl", target = "eventUrl"),
+        @Mapping(source = "eventRequestDTO.date", target = "date", qualifiedByName = "epochToDate"),
+        @Mapping(source = "eventRequestDTO.remote", target = "remote"),
+        @Mapping(target = "address.city", ignore = true), // Ignorar city
+        @Mapping(target = "address.state", ignore = true) // Ignorar state
     })
     Event toDomain(EventRequestDTO eventRequestDTO);
 
     @Mappings({
-            @Mapping(source = "event.title", target = "title"),
-            @Mapping(source = "event.description", target = "description"),
-            @Mapping(source = "event.eventUrl", target = "eventUrl"),
-            @Mapping(source = "event.date", target = "date", qualifiedByName = "dateToEpoch"),
-            @Mapping(source = "event.remote", target = "remote"),
+        @Mapping(source = "event.title", target = "title"),
+        @Mapping(source = "event.description", target = "description"),
+        @Mapping(source = "event.eventUrl", target = "eventUrl"),
+        @Mapping(source = "event.date", target = "date", qualifiedByName = "dateToEpoch"),
+        @Mapping(source = "event.remote", target = "remote"),
     })
     EventRequestDTO toDto(Event event);
 
     @Mappings({
-            @Mapping(source = "jpaEvent.title", target = "title"),
-            @Mapping(source = "jpaEvent.description", target = "description"),
-            @Mapping(source = "jpaEvent.eventUrl", target = "eventUrl"),
-            @Mapping(source = "jpaEvent.date", target = "date"),
-            @Mapping(source = "jpaEvent.remote", target = "remote"),
-            @Mapping(source = "jpaEvent.id", target = "id"),
+        @Mapping(source = "jpaEvent.title", target = "title"),
+        @Mapping(source = "jpaEvent.description", target = "description"),
+        @Mapping(source = "jpaEvent.eventUrl", target = "eventUrl"),
+        @Mapping(source = "jpaEvent.date", target = "date"),
+        @Mapping(source = "jpaEvent.remote", target = "remote"),
+        @Mapping(source = "jpaEvent.id", target = "id"),
     })
     Event toDomain(JpaEvent jpaEvent);
 

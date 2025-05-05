@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.UUID;
 
 public interface JpaCouponRepository extends JpaRepository<JpaCoupon, UUID> {
-    List<JpaCoupon> findByEventId(UUID eventId);
-    List<JpaCoupon> findByEventIdAndValidAfter(UUID eventId, Date since);
-    List<JpaCoupon> findByEventIdAndValid(UUID eventId, Date currentDate);
+    List<JpaCoupon> findByJpaEvent_Id(UUID eventId);
+    List<JpaCoupon> findByJpaEvent_IdAndValidAfter(UUID eventId, Date since);
+    List<JpaCoupon> findByJpaEvent_IdAndValid(UUID eventId, Date currentDate);
 }

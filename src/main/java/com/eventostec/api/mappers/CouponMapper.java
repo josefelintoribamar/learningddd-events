@@ -19,7 +19,8 @@ public interface CouponMapper {
         @Mapping(target = "id", ignore = true),
         @Mapping(source = "couponRequestDTO.code", target = "code"),
         @Mapping(source = "couponRequestDTO.discount", target = "discount"),
-        @Mapping(source = "couponRequestDTO.valid", target = "valid", qualifiedByName = "epochToDate")
+        @Mapping(source = "couponRequestDTO.valid", target = "valid", qualifiedByName = "epochToDate"),
+        @Mapping(target = "event", ignore = true)
     })
     Coupon toDomain(CouponRequestDTO couponRequestDTO);
 
@@ -41,7 +42,8 @@ public interface CouponMapper {
         @Mapping(source = "jpaCoupon.code", target = "code"),
         @Mapping(source = "jpaCoupon.discount", target = "discount"),
         @Mapping(source = "jpaCoupon.valid", target = "valid"),
-        @Mapping(source = "jpaCoupon.id", target = "id")
+        @Mapping(source = "jpaCoupon.id", target = "id"),
+        @Mapping(target = "event", ignore = true)
     })
     Coupon toDomain(JpaCoupon jpaCoupon);
 

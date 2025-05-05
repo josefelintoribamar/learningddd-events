@@ -23,10 +23,10 @@ public class JpaAddress {
     private String city;
     private String state;
 
-    @OneToOne
-    @JoinColumn(name = "event_id")
-    //@Setter
-    //@Getter
+
+    // Relacionamento com JpaEvent
+    @ManyToOne
+    @JoinColumn(name = "event_id", nullable = false) // Cria a coluna "event_id" na tabela "address"
     private JpaEvent jpaEvent;
 
     public JpaAddress(Address address) {

@@ -15,7 +15,8 @@ public interface AddressMapper {
     @Mappings({
         @Mapping(target = "id", ignore = true),
         @Mapping(source = "addressRequestDTO.city", target = "city"),
-        @Mapping(source = "addressRequestDTO.state", target = "state")
+        @Mapping(source = "addressRequestDTO.state", target = "state"),
+        @Mapping(target = "event", ignore = true)
     })
     Address toDomain(AddressRequestDTO addressRequestDTO);
 
@@ -34,7 +35,9 @@ public interface AddressMapper {
     @Mappings({
         @Mapping(source = "jpaAddress.city", target = "city"),
         @Mapping(source = "jpaAddress.state", target = "state"),
-        @Mapping(source = "jpaAddress.id", target = "id")
+        @Mapping(source = "jpaAddress.id", target = "id"),
+        @Mapping(target = "event", ignore = true)
     })
     Address toDomain(JpaAddress jpaAddress);
+    
 }

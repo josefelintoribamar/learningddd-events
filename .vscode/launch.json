@@ -1,0 +1,28 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "TestFlyway",
+      "request": "launch",
+      "mainClass": "com.eventostec.api.tests.TestFlyway",
+      "projectName": "api"
+    },
+    {
+      "type": "java",
+      "name": "TestConnection",
+      "request": "launch",
+      "mainClass": "com.eventostec.api.tests.TestConnection",
+      "projectName": "api"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-ApiApplication<api>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.eventostec.api.ApiApplication",
+      "projectName": "api",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}

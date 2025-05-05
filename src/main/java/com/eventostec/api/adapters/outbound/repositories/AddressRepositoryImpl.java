@@ -32,7 +32,7 @@ public class AddressRepositoryImpl implements AddressRepository {
 
     @Override
     public Optional<Address> findByEvent(Event event) {
-        final Optional<JpaAddress> optional = this.jpaAddressRepository.findByEventId(event.getId());
+        final Optional<JpaAddress> optional = this.jpaAddressRepository.findByJpaEvent_Id(event.getId());
         return optional.map(addressMapper::toDomain);
     }
 

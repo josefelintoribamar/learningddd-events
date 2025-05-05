@@ -50,10 +50,10 @@ public class EventController {
     public ResponseEntity<List<EventResponseDTO>> getFilteredEvents(@RequestParam(defaultValue = "0") int page,
         @RequestParam(defaultValue = "10") int size,
         @RequestParam String city,
-        @RequestParam String uf,
+        @RequestParam String state,
         @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date startDate,
         @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date endDate) {
-        List<EventResponseDTO> events = eventService.getFilteredEvents(page, size, city, uf, startDate, endDate);
+        List<EventResponseDTO> events = eventService.getFilteredEvents(page, size, city, state, startDate, endDate);
         return ResponseEntity.ok(events);
     }
 
