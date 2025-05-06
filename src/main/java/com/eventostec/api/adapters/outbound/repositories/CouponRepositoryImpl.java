@@ -1,8 +1,8 @@
 package com.eventostec.api.adapters.outbound.repositories;
 
-import com.eventostec.api.domain.coupon.CouponRepository;
-import com.eventostec.api.domain.event.Event;
-import com.eventostec.api.domain.coupon.Coupon;
+import com.eventostec.api.domain.Coupon;
+import com.eventostec.api.domain.Event;
+import com.eventostec.api.domain.repositories.CouponRepository;
 import com.eventostec.api.mappers.CouponMapper;
 import com.eventostec.api.adapters.outbound.entities.JpaCoupon;
 

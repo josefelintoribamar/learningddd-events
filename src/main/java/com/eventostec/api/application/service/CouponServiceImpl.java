@@ -1,12 +1,13 @@
 package com.eventostec.api.application.service;
 
-import com.eventostec.api.domain.event.Event;
+import com.eventostec.api.domain.Coupon;
+import com.eventostec.api.domain.Event;
+import com.eventostec.api.domain.repositories.CouponRepository;
 import com.eventostec.api.mappers.EventMapper;
-import com.eventostec.api.domain.coupon.CouponRepository;
+import com.eventostec.api.adapters.inbound.dtos.coupon.CouponRequestDTO;
 import com.eventostec.api.adapters.outbound.entities.JpaEvent;
 import com.eventostec.api.adapters.outbound.repositories.JpaEventRepository;
-import com.eventostec.api.domain.coupon.Coupon;
-import com.eventostec.api.domain.coupon.CouponRequestDTO;
+
 import org.springframework.stereotype.Service;
 
 import java.util.Date;

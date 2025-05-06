@@ -1,13 +1,13 @@
 package com.eventostec.api.adapters.inbound.controllers;
 
-import com.eventostec.api.domain.coupon.Coupon;
-import com.eventostec.api.domain.coupon.CouponRequestDTO;
+import com.eventostec.api.adapters.inbound.dtos.coupon.CouponRequestDTO;
+import com.eventostec.api.adapters.inbound.dtos.event.EventDTO;
+import com.eventostec.api.adapters.inbound.dtos.event.EventRequestDTO;
+import com.eventostec.api.adapters.inbound.dtos.event.EventResponseDTO;
 import com.eventostec.api.application.service.CouponServiceImpl;
 import com.eventostec.api.application.service.EventServiceImpl;
-import com.eventostec.api.domain.event.Event;
-import com.eventostec.api.domain.event.EventDTO;
-import com.eventostec.api.domain.event.EventRequestDTO;
-import com.eventostec.api.domain.event.EventResponseDTO;
+import com.eventostec.api.domain.Coupon;
+import com.eventostec.api.domain.Event;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -27,8 +27,8 @@ public class EventController {
     private final CouponServiceImpl couponServiceImpl;
 
     @PostMapping
-    public ResponseEntity<Event> create(@Valid @RequestBody EventRequestDTO eventRequestDTO) {
-        Event newEvent = this.eventService.create(eventRequestDTO);
+    public ResponseEntity<EventResponseDTO> create(@Valid @RequestBody EventRequestDTO eventRequestDTO) {
+        EventResponseDTO newEvent = this.eventService.create(eventRequestDTO);
         return ResponseEntity.ok(newEvent);
     }
 

@@ -1,4 +1,4 @@
-package com.eventostec.api.domain.event;
+package com.eventostec.api.domain;
 
 import java.util.Date;
 

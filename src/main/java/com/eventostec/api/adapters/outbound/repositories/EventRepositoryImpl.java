@@ -10,9 +10,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
 
 import com.eventostec.api.adapters.outbound.entities.JpaEvent;
-import com.eventostec.api.domain.event.Event;
-import com.eventostec.api.domain.event.EventAddressProjection;
-import com.eventostec.api.domain.event.EventRepository;
+import com.eventostec.api.domain.Event;
+import com.eventostec.api.domain.EventAddressProjection;
+import com.eventostec.api.domain.Pagination;
+import com.eventostec.api.domain.repositories.EventRepository;
 import com.eventostec.api.mappers.EventMapper;
 
 @Repository
@@ -61,17 +62,32 @@ public class EventRepositoryImpl implements EventRepository {
     }
 
     @Override
-    public Page<EventAddressProjection> findUpcommingEvents(Date currentDate, int page, int size) {
-        return this.jpaEventRepository.findUpcomingEvents(currentDate, PageRequest.of(page, size));
+    public Pagination<EventAddressProjection> findUpcommingEvents(Date currentDate, int page, int size) {
+        Page<EventAddressProjection> springPage = jpaEventRepository.findUpcomingEvents(
+            currentDate, PageRequest.of(page, size));
+        
+        return convertToCustomPagination(springPage);
     }
 
     @Override
-    public Page<EventAddressProjection> findFilteredEvents(String city, String state, Date startDate, Date endDate, int page, int size) {
-        return this.jpaEventRepository.findFilteredEvents(city, state, startDate, endDate, PageRequest.of(page, size));
+    public Pagination<EventAddressProjection> findFilteredEvents(String city, String state, Date startDate, Date endDate, int page, int size) {
+        Page<EventAddressProjection> springPage = jpaEventRepository.findFilteredEvents(
+            city, state, startDate, endDate, PageRequest.of(page, size));
+        
+        return convertToCustomPagination(springPage);
     }
 
     @Override
     public List<EventAddressProjection> findEventsByTitle(String title) {
         return this.jpaEventRepository.findEventsByTitle(title);
+    }
+
+    private <T> Pagination<T> convertToCustomPagination(Page<T> springPage) {
+        return new Pagination<>(
+            springPage.getContent(),
+            springPage.getNumber(),
+            springPage.getSize(),
+            springPage.getTotalElements()
+        );
     }
 }

@@ -1,8 +1,8 @@
 package com.eventostec.api.adapters.outbound.repositories;
 
-import com.eventostec.api.domain.event.Event;
-import com.eventostec.api.domain.address.Address;
-import com.eventostec.api.domain.address.AddressRepository;
+import com.eventostec.api.domain.Address;
+import com.eventostec.api.domain.Event;
+import com.eventostec.api.domain.repositories.AddressRepository;
 import com.eventostec.api.mappers.AddressMapper;
 import com.eventostec.api.adapters.outbound.entities.JpaAddress;
 

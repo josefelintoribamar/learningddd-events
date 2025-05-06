@@ -1,11 +1,11 @@
 package com.eventostec.api.application.service;
 
+import com.eventostec.api.adapters.inbound.dtos.address.AddressRequestDTO;
 import com.eventostec.api.adapters.outbound.entities.JpaEvent;
 import com.eventostec.api.adapters.outbound.repositories.JpaEventRepository;
-import com.eventostec.api.domain.address.Address;
-import com.eventostec.api.domain.address.AddressRepository;
-import com.eventostec.api.domain.address.AddressRequestDTO;
-import com.eventostec.api.domain.event.Event;
+import com.eventostec.api.domain.Address;
+import com.eventostec.api.domain.Event;
+import com.eventostec.api.domain.repositories.AddressRepository;
 import com.eventostec.api.mappers.AddressMapper;
 import com.eventostec.api.mappers.EventMapper;
 

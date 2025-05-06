@@ -1,4 +1,4 @@
-package com.eventostec.api.domain.event;
+package com.eventostec.api.adapters.inbound.dtos.event;
 
 import java.util.Date;
 import java.util.List;
@@ -7,7 +7,7 @@ public record EventDTO(
     Long id,
     String title,
     String description,
-    Date date,
+    Long date,
     String city,
     String state,
     String eventUrl,

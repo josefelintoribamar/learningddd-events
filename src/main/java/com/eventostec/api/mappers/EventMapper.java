@@ -1,11 +1,13 @@
 package com.eventostec.api.mappers;
 
+import com.eventostec.api.adapters.inbound.dtos.event.EventDTO;
+import com.eventostec.api.adapters.inbound.dtos.event.EventRequestDTO;
+import com.eventostec.api.adapters.inbound.dtos.event.EventResponseDTO;
 import com.eventostec.api.adapters.outbound.entities.JpaEvent;
-import com.eventostec.api.domain.address.Address;
-import com.eventostec.api.domain.coupon.Coupon;
-import com.eventostec.api.domain.event.Event;
-import com.eventostec.api.domain.event.EventDTO;
-import com.eventostec.api.domain.event.EventRequestDTO;
+import com.eventostec.api.domain.Address;
+import com.eventostec.api.domain.Coupon;
+import com.eventostec.api.domain.Event;
+
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
@@ -20,14 +22,14 @@ import java.util.stream.Collectors;
 public interface EventMapper {
 
     @Mappings({
-        @Mapping(target = "id", ignore = true),
+        @Mapping(source = "eventRequestDTO.id", target = "id", qualifiedByName = "handleId"),
         @Mapping(source = "eventRequestDTO.title", target = "title"),
         @Mapping(source = "eventRequestDTO.description", target = "description"),
         @Mapping(source = "eventRequestDTO.eventUrl", target = "eventUrl"),
         @Mapping(source = "eventRequestDTO.date", target = "date", qualifiedByName = "epochToDate"),
         @Mapping(source = "eventRequestDTO.remote", target = "remote"),
-        @Mapping(target = "address.city", ignore = true), // Ignorar city
-        @Mapping(target = "address.state", ignore = true) // Ignorar state
+        @Mapping(target = "address.city", ignore = true),
+        @Mapping(target = "address.state", ignore = true)
     })
     @SuppressWarnings("UnmappedTargetProperties")
     Event toDomain(EventRequestDTO eventRequestDTO);
@@ -39,7 +41,15 @@ public interface EventMapper {
         @Mapping(source = "event.date", target = "date", qualifiedByName = "dateToEpoch"),
         @Mapping(source = "event.remote", target = "remote"),
     })
-    EventRequestDTO toDto(Event event);
+    EventRequestDTO toRequestDto(Event event);
+
+    @Mappings({
+        @Mapping(source = "event.title", target = "title"),
+        @Mapping(source = "event.description", target = "description"),
+        @Mapping(source = "event.eventUrl", target = "eventUrl"),
+        @Mapping(source = "event.date", target = "date", qualifiedByName = "dateToEpoch")
+    })
+    EventDTO toDto(Event event);
 
     @Mappings({
         @Mapping(source = "jpaEvent.title", target = "title"),
@@ -51,7 +61,22 @@ public interface EventMapper {
     })
     Event toDomain(JpaEvent jpaEvent);
 
-    default EventDTO toDTO(Event event, Optional<Address> address, List<Coupon> coupons) {
+    default EventResponseDTO toResponseDto(Event event, Optional<Address> address) {
+        String city = address.map(Address::getCity).orElse("");
+        String state = address.map(Address::getState).orElse("");
+    
+        return new EventResponseDTO(
+                event.getId(),
+                event.getTitle(),
+                event.getDescription(),
+                event.getDate().getTime(),
+                city,
+                state,
+                event.getRemote(),
+                event.getEventUrl());
+    }
+
+    default EventDTO toDto(Event event, Optional<Address> address, List<Coupon> coupons) {
         List<EventDTO.CouponDTO> couponDTOs = coupons.stream()
                 .map(coupon -> new EventDTO.CouponDTO(
                         coupon.getCode(),
@@ -66,11 +91,16 @@ public interface EventMapper {
                 event.getId(),
                 event.getTitle(),
                 event.getDescription(),
-                event.getDate(),
+                event.getDate().getTime(),
                 city,
                 state,
                 event.getEventUrl(),
                 couponDTOs);
+    }
+
+    @Named("handleId")
+    default Long handleId(Long id) {
+        return id != null ? id : null;
     }
 
     @Named("epochToDate")

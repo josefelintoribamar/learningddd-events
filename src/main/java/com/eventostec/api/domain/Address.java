@@ -1,6 +1,4 @@
-package com.eventostec.api.domain.address;
-
-import com.eventostec.api.domain.event.Event;
+package com.eventostec.api.domain;
 
 public class Address {
     private Long id;
@@ -9,6 +7,9 @@ public class Address {
     private String state;
 
     private Event event;
+
+    public Address() {
+    }
 
     public Address(Long id, String city, String state) {
         this.id = id;

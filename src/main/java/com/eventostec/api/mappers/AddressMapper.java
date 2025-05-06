@@ -1,9 +1,9 @@
 package com.eventostec.api.mappers;
 
+import com.eventostec.api.adapters.inbound.dtos.address.AddressRequestDTO;
+import com.eventostec.api.adapters.inbound.dtos.address.AddressResponseDTO;
 import com.eventostec.api.adapters.outbound.entities.JpaAddress;
-import com.eventostec.api.domain.address.Address;
-import com.eventostec.api.domain.address.AddressRequestDTO;
-import com.eventostec.api.domain.address.AddressResponseDTO;
+import com.eventostec.api.domain.Address;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

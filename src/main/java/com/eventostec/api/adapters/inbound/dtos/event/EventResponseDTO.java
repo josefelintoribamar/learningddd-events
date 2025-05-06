@@ -1,12 +1,10 @@
-package com.eventostec.api.domain.event;
-
-import java.util.Date;
+package com.eventostec.api.adapters.inbound.dtos.event;
 
 public record EventResponseDTO(
     Long id, 
     String title, 
     String description, 
-    Date date, 
+    Long date, 
     String city, 
     String state, 
     Boolean remote, 

@@ -1,4 +1,4 @@
-package com.eventostec.api.domain.coupon;
+package com.eventostec.api.adapters.inbound.dtos.coupon;
 
 import java.util.Date;
 

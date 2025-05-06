@@ -1,9 +1,9 @@
 package com.eventostec.api.mappers;
 
+import com.eventostec.api.adapters.inbound.dtos.coupon.CouponRequestDTO;
+import com.eventostec.api.adapters.inbound.dtos.coupon.CouponResponseDTO;
 import com.eventostec.api.adapters.outbound.entities.JpaCoupon;
-import com.eventostec.api.domain.coupon.Coupon;
-import com.eventostec.api.domain.coupon.CouponRequestDTO;
-import com.eventostec.api.domain.coupon.CouponResponseDTO;
+import com.eventostec.api.domain.Coupon;
 
 import java.util.Date;
 

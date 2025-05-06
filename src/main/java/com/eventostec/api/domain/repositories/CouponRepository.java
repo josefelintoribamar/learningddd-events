@@ -1,10 +1,11 @@
-package com.eventostec.api.domain.coupon;
-
-import com.eventostec.api.domain.event.Event;
+package com.eventostec.api.domain.repositories;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+
+import com.eventostec.api.domain.Coupon;
+import com.eventostec.api.domain.Event;
 
 public interface CouponRepository {
     Coupon save(Coupon coupon);

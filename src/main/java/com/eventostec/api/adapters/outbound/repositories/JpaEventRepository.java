@@ -1,7 +1,8 @@
 package com.eventostec.api.adapters.outbound.repositories;
 
 import com.eventostec.api.adapters.outbound.entities.JpaEvent;
-import com.eventostec.api.domain.event.EventAddressProjection;
+import com.eventostec.api.domain.EventAddressProjection;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

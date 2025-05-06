@@ -3,21 +3,20 @@ package com.eventostec.api.application.usecases;
 import java.util.Date;
 import java.util.List;
 
-import com.eventostec.api.domain.event.Event;
-import com.eventostec.api.domain.event.EventDTO;
-import com.eventostec.api.domain.event.EventRequestDTO;
-import com.eventostec.api.domain.event.EventResponseDTO;
+import com.eventostec.api.adapters.inbound.dtos.event.EventDTO;
+import com.eventostec.api.adapters.inbound.dtos.event.EventRequestDTO;
+import com.eventostec.api.adapters.inbound.dtos.event.EventResponseDTO;
 
 public interface EventUseCases {
-  Event create(EventRequestDTO dto);
+    EventResponseDTO create(EventRequestDTO dto);
 
-  List<EventResponseDTO> getUpcommingEvents(int page, int size);
+    List<EventResponseDTO> getUpcommingEvents(int page, int size);
 
-  EventDTO getEventDetails(Long id);
+    EventDTO getEventDetails(Long id);
 
-  void deleteEvent(Long id, String adminKey);
+    List<EventResponseDTO> searchEvents(String title);
 
-  List<EventResponseDTO> searchEvents(String title);
+    public List<EventResponseDTO> getFilteredEvents(int page, int size, String city, String state, Date startDate, Date endDate);
 
-  List<EventResponseDTO> filterEvents(int page, int size, String city, String state, Date startDate, Date endDate);
+    void deleteEvent(Long id, String adminKey);
 }

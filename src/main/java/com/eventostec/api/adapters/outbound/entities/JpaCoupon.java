@@ -1,7 +1,5 @@
 package com.eventostec.api.adapters.outbound.entities;
 
-import com.eventostec.api.domain.coupon.Coupon;
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+
+import com.eventostec.api.domain.Coupon;
 
 @Entity
 @Table(name = "coupon")

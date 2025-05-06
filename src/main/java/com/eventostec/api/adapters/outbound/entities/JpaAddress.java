@@ -1,6 +1,7 @@
 package com.eventostec.api.adapters.outbound.entities;
 
-import com.eventostec.api.domain.address.Address;
+import com.eventostec.api.domain.Address;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -13,7 +13,7 @@ import lombok.Setter;
 
 import java.util.Date;
 
-import com.eventostec.api.domain.event.Event;
+import com.eventostec.api.domain.Event;
 
 @Entity
 @Table(name = "event")
