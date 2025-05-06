@@ -1,17 +1,17 @@
 package com.eventostec.api.application.service;
 
-import com.eventostec.api.adapters.inbound.dtos.address.AddressRequestDTO;
-import com.eventostec.api.adapters.inbound.dtos.event.EventDTO;
-import com.eventostec.api.adapters.inbound.dtos.event.EventRequestDTO;
-import com.eventostec.api.adapters.inbound.dtos.event.EventResponseDTO;
-import com.eventostec.api.application.usecases.EventUseCases;
-import com.eventostec.api.domain.Address;
-import com.eventostec.api.domain.Coupon;
-import com.eventostec.api.domain.Event;
-import com.eventostec.api.domain.EventAddressProjection;
-import com.eventostec.api.domain.Pagination;
-import com.eventostec.api.domain.repositories.EventRepository;
-import com.eventostec.api.mappers.EventMapper;
+import com.eventostec.api.adapter.inbound.dto.AddressRequestDTO;
+import com.eventostec.api.adapter.inbound.dto.EventDTO;
+import com.eventostec.api.adapter.inbound.dto.EventRequestDTO;
+import com.eventostec.api.adapter.inbound.dto.EventResponseDTO;
+import com.eventostec.api.application.usecase.EventUseCases;
+import com.eventostec.api.domain.data.Address;
+import com.eventostec.api.domain.data.Coupon;
+import com.eventostec.api.domain.data.Event;
+import com.eventostec.api.domain.projection.EventAddressProjection;
+import com.eventostec.api.domain.repository.EventRepository;
+import com.eventostec.api.domain.util.Pagination;
+import com.eventostec.api.mapper.EventMapper;
 
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;

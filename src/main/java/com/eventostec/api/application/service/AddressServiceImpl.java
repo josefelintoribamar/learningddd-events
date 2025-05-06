@@ -1,13 +1,13 @@
 package com.eventostec.api.application.service;
 
-import com.eventostec.api.adapters.inbound.dtos.address.AddressRequestDTO;
-import com.eventostec.api.adapters.outbound.entities.JpaEvent;
-import com.eventostec.api.adapters.outbound.repositories.JpaEventRepository;
-import com.eventostec.api.domain.Address;
-import com.eventostec.api.domain.Event;
-import com.eventostec.api.domain.repositories.AddressRepository;
-import com.eventostec.api.mappers.AddressMapper;
-import com.eventostec.api.mappers.EventMapper;
+import com.eventostec.api.adapter.inbound.dto.AddressRequestDTO;
+import com.eventostec.api.adapter.outbound.entity.JpaEvent;
+import com.eventostec.api.adapter.outbound.repository.JpaEventRepository;
+import com.eventostec.api.domain.data.Address;
+import com.eventostec.api.domain.data.Event;
+import com.eventostec.api.domain.repository.AddressRepository;
+import com.eventostec.api.mapper.AddressMapper;
+import com.eventostec.api.mapper.EventMapper;
 
 import org.springframework.stereotype.Service;
 
